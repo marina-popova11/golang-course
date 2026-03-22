@@ -20,6 +20,13 @@ type Client struct {
 	conn   *grpc.ClientConn
 }
 
+func (c *Client) Close() error {
+	if c.conn != nil {
+		return c.conn.Close()
+	}
+	return nil
+}
+
 func NewClient(ctx context.Context, address string) (*Client, error) {
 	conn, err := grpc.DialContext(
 		ctx,

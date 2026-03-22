@@ -6,19 +6,19 @@ import (
 )
 
 type Config struct {
-	HTTP      HTTPConfig      `yaml:"http"`
-	Collector CollectorConfig `yaml:"collector"`
+	HTTP      HTTPConfig      `yaml:"http" env:"http"`
+	Collector CollectorConfig `yaml:"collector" env:"collector"`
 	Swagger   SwaggerConfig   `yaml:"swagger"`
 }
 
 type HTTPConfig struct {
-	Port         string        `yaml:"port"`
+	Port         string        `yaml:"port" env:"PORT"`
 	ReadTimeout  time.Duration `yaml:"read_timeout"`
 	WriteTimeout time.Duration `yaml:"write_timeout"`
 }
 
 type CollectorConfig struct {
-	Address string `yaml:"address"`
+	Address string `yaml:"address" env:"COLLECTOR_ADDRESS"`
 }
 
 type SwaggerConfig struct {
@@ -27,18 +27,28 @@ type SwaggerConfig struct {
 }
 
 func Load() (*Config, error) {
-	return &Config{
+	cfg := &Config{
 		HTTP: HTTPConfig{
-			Port:         ":8081",
+			Port:         ":8080",
 			ReadTimeout:  10 * time.Second,
 			WriteTimeout: 10 * time.Second,
 		},
 		Collector: CollectorConfig{
-			Address: os.Getenv("GITHUB_TOKEN"),
+			Address: "localhost:8081",
 		},
 		Swagger: SwaggerConfig{
 			Enabled: true,
 			Path:    "/swagger",
 		},
-	}, nil
+	}
+
+	if envAddress := os.Getenv("COLLECTOR_ADDRESS"); envAddress != "" {
+		cfg.Collector.Address = envAddress
+	}
+
+	if envPort := os.Getenv("PORT"); envPort != "" {
+		cfg.HTTP.Port = envPort
+	}
+
+	return cfg, nil
 }

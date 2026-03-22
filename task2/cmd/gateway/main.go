@@ -22,6 +22,11 @@ func AppRun(ctx context.Context) error {
 		return fmt.Errorf("config load: %w", err)
 	}
 
+	log.Printf("Collector address: %q", cfg.Collector.Address)
+	if cfg.Collector.Address == "" {
+		log.Fatal("Collector address is empty - set COLLECTOR_ADDRESS env var or config")
+	}
+
 	collectorClient, err := grpc_client.NewClient(ctx, cfg.Collector.Address)
 	if err != nil {
 		return fmt.Errorf("collector client: %w", err)

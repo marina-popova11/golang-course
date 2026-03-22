@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option go_package = "github.com/marina-popova11/golang-course/task2/proto;protopb";
+
+package repo;
+
+message GetRepoRequest {
+  string owner = 1;
+  string repo = 2;
+}
+
+message GetRepoResponse {
+  string name = 1;
+  string description = 2;
+  int32 stars = 3;
+  int32 forks = 4;
+  string created_at = 5;
+}
+
+service CollectorService {
+  rpc GetRepoInfo(GetRepoRequest) returns (GetRepoResponse);
+}

@@ -1,0 +1,51 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "GitHub Analyzer API",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/v1/repos/{owner}/{repo}": {
+      "get": {
+        "summary": "Get repository info",
+        "parameters": [
+          {"name": "owner", "in": "path", "required": true, "type": "string"},
+          {"name": "repo", "in": "path", "required": true, "type": "string"}
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {"type": "string"},
+                "description": {"type": "string"},
+                "stars": {"type": "integer"},
+                "forks": {"type": "integer"},
+                "created_at": {"type": "string"}
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input parameters: owner or repo is empty",
+              "schema": {
+                "type": "string"
+               }
+          },
+          "404": {
+            "description": "Repository not found on GitHub",
+              "schema": {
+                "type": "string"
+              }
+          },
+          "500": {
+            "description": "Internal server error: failed to fetch data from collector",
+              "schema": {
+                "type": "string"
+              }
+          }
+        }
+      }
+    }
+  }
+}

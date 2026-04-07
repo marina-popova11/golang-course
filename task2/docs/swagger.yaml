@@ -1,0 +1,56 @@
+openapi: 3.0.0
+info:
+  title: GitHub Analyzer API
+  version: 1.0.0
+  description: API для получения информации о репозиториях GitHub
+
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /api/v1/repos/{owner}/{repo}:
+    get:
+      summary: Get repository info
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: repo
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepoInfo'
+        '400':
+          description: 'Invalid input parameters: owner or repo is empty'
+          schema:
+            type: string
+        '404':
+          description: Repository not found
+        '500':
+          description: Internal error
+
+components:
+  schemas:
+    RepoInfo:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        stars:
+          type: integer
+        forks:
+          type: integer
+        created_at:
+          type: string
+          format: date-time

@@ -8,11 +8,11 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	"github.com/marina-popova11/golang-course/task2/internal/gateway/handler"
-	"github.com/marina-popova11/golang-course/task2/internal/gateway/usecase"
+	"github.com/marina-popova11/golang-course/task2/gateway/internal/handler"
+	"github.com/marina-popova11/golang-course/task2/gateway/internal/usecase"
 
-	"github.com/marina-popova11/golang-course/task2/internal/gateway/adapter/grpc_client"
-	"github.com/marina-popova11/golang-course/task2/internal/gateway/config"
+	"github.com/marina-popova11/golang-course/task2/gateway/internal/adapter/grpc_client"
+	"github.com/marina-popova11/golang-course/task2/gateway/internal/config"
 	swagger "github.com/swaggo/http-swagger"
 )
 

@@ -5,8 +5,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/marina-popova11/golang-course/task2/internal/collector/dto"
-	"github.com/marina-popova11/golang-course/task2/internal/collector/usecase"
+	"github.com/marina-popova11/golang-course/task2/collector/internal/dto"
+	"github.com/marina-popova11/golang-course/task2/collector/internal/usecase"
 	pb "github.com/marina-popova11/golang-course/task2/proto"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"

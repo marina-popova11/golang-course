@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/marina-popova11/golang-course/task2/internal/gateway/dto"
+	"github.com/marina-popova11/golang-course/task2/gateway/internal/dto"
 	pb "github.com/marina-popova11/golang-course/task2/proto"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"

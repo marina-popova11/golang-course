@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/google/go-github/v84/github"
-	"github.com/marina-popova11/golang-course/task2/internal/collector/domain"
+	"github.com/marina-popova11/golang-course/task2/collector/internal/domain"
 )
 
 type RepoInterface interface {

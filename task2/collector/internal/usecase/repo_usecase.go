@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/marina-popova11/golang-course/task2/internal/collector/adapter/github_client"
-	"github.com/marina-popova11/golang-course/task2/internal/collector/dto"
+	"github.com/marina-popova11/golang-course/task2/collector/internal/adapter/github_client"
+	"github.com/marina-popova11/golang-course/task2/collector/internal/dto"
 )
 
 type RepoUsecase struct {

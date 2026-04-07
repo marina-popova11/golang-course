@@ -6,8 +6,8 @@ import (
 	"strings"
 
 	"github.com/go-chi/chi/v5"
-	"github.com/marina-popova11/golang-course/task2/internal/gateway/dto"
-	"github.com/marina-popova11/golang-course/task2/internal/gateway/usecase"
+	"github.com/marina-popova11/golang-course/task2/gateway/internal/dto"
+	"github.com/marina-popova11/golang-course/task2/gateway/internal/usecase"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

@@ -6,17 +6,17 @@ import (
 	"log"
 	"net"
 
-	"github.com/marina-popova11/golang-course/task2/internal/collector/adapter/github_client"
-	"github.com/marina-popova11/golang-course/task2/internal/collector/config"
-	"github.com/marina-popova11/golang-course/task2/internal/collector/handler"
-	"github.com/marina-popova11/golang-course/task2/internal/collector/usecase"
+	"github.com/marina-popova11/golang-course/task2/collector/internal/adapter/github_client"
+	"github.com/marina-popova11/golang-course/task2/collector/internal/config"
+	"github.com/marina-popova11/golang-course/task2/collector/internal/handler"
+	"github.com/marina-popova11/golang-course/task2/collector/internal/usecase"
 	"google.golang.org/grpc"
 )
 
 func AppRun(ctx context.Context) error {
 	cfg, err := config.Load()
 	if err != nil {
-		return fmt.Errorf("Config load: %v", &err)
+		return fmt.Errorf("Config load: %w", err)
 	}
 
 	githubClient := github_client.NewClient(cfg.GitHub.Token)
@@ -31,7 +31,7 @@ func AppRun(ctx context.Context) error {
 	grpcHandler.Register(server)
 	log.Printf("Collector gRPC server starting on %s", cfg.GRPC.Port)
 	if err := server.Serve(listener); err != nil {
-		return fmt.Errorf("Server serve")
+		return fmt.Errorf("Server serve: %w", err)
 	}
 
 	return nil
